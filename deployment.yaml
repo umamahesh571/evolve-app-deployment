@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: evolveappdeployment
+spec:
+  replicas: 4
+  strategy:
+    type: ReCreate
+  selector:
+     matchlabels:
+       app: evolveapp
+  template:
+    metadata:
+      name: evolveapppod
+      labels:
+        app: evolveapp
+	spec:
+      containers: 
+      - name: evolveappcontainer
+        image: umamahesh571/evolve-ui
+        ports:
+        - containerPort: 8080
